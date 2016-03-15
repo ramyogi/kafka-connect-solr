@@ -1,0 +1,36 @@
+zookeeper:
+  image: confluent/zookeeper
+  ports:
+    - "2181:2181"
+#kafka:
+#  image: confluent/kafka
+#  ports:
+#    - "9092:9092"
+#  links:
+#    - "zookeeper:zookeeper"
+#  environment:
+#    - "ZOOKEEPER_PORT_2181_TCP_ADDR=zookeeper"
+#    - "ZOOKEEPER_PORT_2181_TCP_PORT=2181"
+solr:
+  image: solr
+  hostname: solr
+  command: "bash -c '/opt/solr/bin/solr start -f -z zookeeper:2181 -h solr'"
+  ports:
+    - "8983:8983"
+  links:
+    - "zookeeper:zookeeper"
+  environment:
+    - "ZOOKEEPER_PORT_2181_TCP_ADDR=zookeeper"
+    - "ZOOKEEPER_PORT_2181_TCP_PORT=2181"
+#schema-registry:
+#  image: confluent/schema-registry
+#  entrypoint: "bash -c 'sleep 10;/usr/local/bin/schema-registry-docker.sh'"
+#  ports:
+#    - "8081:8081"
+#  links:
+#    - "zookeeper:zookeeper"
+#    - "kafka:kafka"
+#  environment:
+#    - "ZOOKEEPER_PORT_2181_TCP_ADDR=zookeeper"
+#    - "ZOOKEEPER_PORT_2181_TCP_PORT=2181"
+#    - "SCHEMA_REGISTRY_DEBUG=true"
