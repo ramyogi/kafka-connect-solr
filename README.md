@@ -1,5 +1,3 @@
-Currently the CloudSolr configuration is the only thing that has been tested.
-
 # CloudSolr Configuration
 
 ## Connector configuration
@@ -105,6 +103,14 @@ solr0.column.ignore.unknown.fields=true
 solr0.column.mappings.createdAt.field=created_date
 solr0.column.mappings.favoriteCount.field=favorite_count
 solr0.column.mappings.text.field=text
+```
+
+# Running in development
+
+```
+mvn clean package
+export CLASSPATH="$(find `pwd`/target/kafka-connect-solr-1.0.0-SNAPSHOT-package/share/java/kafka-connect-solr -type f | tr '\n' ':')"
+$CONFLUENT_HOME/bin/connect-standalone $CONFLUENT_HOME/etc/schema-registry/connect-avro-standalone.properties httpsolr.properties
 ```
 
 
