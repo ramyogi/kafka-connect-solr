@@ -13,19 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.confluent.connect.solr.sink.solr;
+package io.confluent.connect.solr.sink.config;
 
-import io.confluent.connect.solr.sink.config.HttpSolrSinkTopicConfig;
-import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.request.UpdateRequest;
+import org.apache.kafka.common.config.ConfigDef;
 
-class HttpSolrInputDocumentHandler  extends SolrInputDocumentHandler {
-  public HttpSolrInputDocumentHandler(HttpSolrSinkTopicConfig topicConfig, SolrClient solrClient, SolrInputDocumentConverter solrInputDocumentConverter) {
-    super(topicConfig, solrClient, solrInputDocumentConverter);
+import java.util.Map;
+
+public class HttpSolrSinkConnectorConfig extends SolrSinkConnectorConfig {
+
+
+
+  protected HttpSolrSinkConnectorConfig(ConfigDef subclassConfigDef, Map<String, String> props) {
+    super(subclassConfigDef, props);
   }
 
   @Override
-  protected void beforeFlush(UpdateRequest inputDocuments) {
-
+  protected SolrSinkTopicConfig createTopicConfig(Map props) {
+    return null;
   }
+
+  public HttpSolrSinkConnectorConfig(Map<String, String> props) {
+    this(config,props);
+  }
+
+
 }

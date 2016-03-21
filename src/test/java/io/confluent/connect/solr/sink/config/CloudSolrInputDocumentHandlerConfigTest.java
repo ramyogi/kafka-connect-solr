@@ -15,7 +15,7 @@
  */
 package io.confluent.connect.solr.sink.config;
 
-import io.confluent.connect.solr.sink.solr.CloudSolrInputDocumentHandlerFactory;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,15 +27,15 @@ import java.util.Map;
 
 public class CloudSolrInputDocumentHandlerConfigTest {
   Map<String, String> props;
-  CloudSolrInputDocumentHandlerConfig config;
+  CloudSolrSinkConnectorConfig config;
 
   @Before
   public void before(){
     this.props = new LinkedHashMap<>();
-    this.props.put(CloudSolrInputDocumentHandlerConfig.ZOOKEEPER_CHROOT_CONFIG, "/solr");
-    this.props.put(CloudSolrInputDocumentHandlerConfig.ZOOKEEPER_HOSTS_CONFIG, "server1:2181,server2:2181,server3:2181");
+    this.props.put(CloudSolrSinkConnectorConfig.ZOOKEEPER_CHROOT_CONFIG, "/solr");
+    this.props.put(CloudSolrSinkConnectorConfig.ZOOKEEPER_HOSTS_CONFIG, "server1:2181,server2:2181,server3:2181");
 
-    this.config = new CloudSolrInputDocumentHandlerConfig(this.props);
+    this.config = new CloudSolrSinkConnectorConfig(this.props);
   }
 
   @Test
@@ -47,8 +47,8 @@ public class CloudSolrInputDocumentHandlerConfigTest {
 
   @Test
   public void getZookeeperChroot_null(){
-    this.props.remove(CloudSolrInputDocumentHandlerConfig.ZOOKEEPER_CHROOT_CONFIG);
-    this.config = new CloudSolrInputDocumentHandlerConfig(props);
+    this.props.remove(CloudSolrSinkConnectorConfig.ZOOKEEPER_CHROOT_CONFIG);
+    this.config = new CloudSolrSinkConnectorConfig(props);
     final String expected = null;
     final String actual = this.config.getZookeeperChroot();
     Assert.assertEquals(expected, actual);
@@ -63,7 +63,12 @@ public class CloudSolrInputDocumentHandlerConfigTest {
 
   @Test(expected = org.apache.kafka.common.config.ConfigException.class)
   public void getZookeeperHosts_null(){
-    this.props.remove(CloudSolrInputDocumentHandlerConfig.ZOOKEEPER_HOSTS_CONFIG);
-    this.config = new CloudSolrInputDocumentHandlerConfig(props);
+    this.props.remove(CloudSolrSinkConnectorConfig.ZOOKEEPER_HOSTS_CONFIG);
+    this.config = new CloudSolrSinkConnectorConfig(props);
+  }
+
+  @Test
+  public void toHtmlTable(){
+    System.out.println(CloudSolrSinkConnectorConfig.configDef().toHtmlTable());
   }
 }

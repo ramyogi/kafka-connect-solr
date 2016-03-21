@@ -15,8 +15,8 @@
  */
 package io.confluent.connect.solr.sink.config;
 
-import io.confluent.connect.solr.sink.solr.DefaultSolrInputDocumentConverter;
-import io.confluent.connect.solr.sink.solr.SolrInputDocumentConverter;
+import io.confluent.connect.solr.sink.DefaultSolrInputDocumentConverter;
+import io.confluent.connect.solr.sink.SolrInputDocumentConverter;
 import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
 

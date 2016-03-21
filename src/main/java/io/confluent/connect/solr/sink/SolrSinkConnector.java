@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class SolrSinkConnector extends SinkConnector {
+public abstract class SolrSinkConnector extends SinkConnector {
 
   @Override
   public String version() {
@@ -35,11 +35,6 @@ public class SolrSinkConnector extends SinkConnector {
   @Override
   public void start(Map<String, String> map) {
     this.config = map;
-  }
-
-  @Override
-  public Class<? extends Task> taskClass() {
-    return SolrSinkTask.class;
   }
 
   @Override

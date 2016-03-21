@@ -15,16 +15,18 @@
  */
 package io.confluent.connect.solr.sink.config;
 
-import io.confluent.connect.solr.sink.solr.SolrInputDocumentHandlerFactory;
 import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
 import org.apache.kafka.connect.errors.ConnectException;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SolrInputDocumentHandlerConfig<T extends SolrSinkTopicConfig> extends AbstractConfig {
+public abstract class SolrSinkConnectorConfig<T extends SolrSinkTopicConfig> extends AbstractConfig {
   static ConfigDef config = baseConfigDef();
 
   public static ConfigDef baseConfigDef() {
@@ -34,11 +36,11 @@ public class SolrInputDocumentHandlerConfig<T extends SolrSinkTopicConfig> exten
 
   final Map<String, T> topicConfigLookup;
 
-  public SolrInputDocumentHandlerConfig(Map<String, String> props) {
+  public SolrSinkConnectorConfig(Map<String, String> props) {
     this(config, props);
   }
 
-  protected SolrInputDocumentHandlerConfig(ConfigDef subclassConfigDef, Map<String, String> props) {
+  protected SolrSinkConnectorConfig(ConfigDef subclassConfigDef, Map<String, String> props) {
     super(subclassConfigDef, props);
     this.topicConfigLookup = loadSolr();
   }

@@ -16,9 +16,6 @@
 package io.confluent.connect.solr.sink;
 
 
-import io.confluent.connect.solr.sink.config.SolrSinkTaskConfig;
-import io.confluent.connect.solr.sink.solr.SolrInputDocumentHandler;
-import io.confluent.connect.solr.sink.solr.SolrInputDocumentHandlerFactory;
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.connect.errors.ConnectException;
@@ -34,9 +31,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class SolrSinkTask extends SinkTask {
+public abstract class SolrSinkTask extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(SolrSinkTask.class);
   SolrInputDocumentHandlerFactory solrInputDocumentHandlerFactory;
+
+  protected abstract SolrInputDocumentHandlerFactory getSolrInputDocumentHandlerFactory(Map<String, String> map);
 
   @Override
   public String version() {
@@ -45,9 +44,7 @@ public class SolrSinkTask extends SinkTask {
 
   @Override
   public void start(Map<String, String> map) {
-    SolrSinkTaskConfig config = new SolrSinkTaskConfig(map);
-    this.solrInputDocumentHandlerFactory = config.getSolrInputDocumentFactory();
-    this.solrInputDocumentHandlerFactory.initialize(map);
+    this.solrInputDocumentHandlerFactory = getSolrInputDocumentHandlerFactory(map);
   }
 
   @Override

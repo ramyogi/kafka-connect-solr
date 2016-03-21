@@ -20,7 +20,7 @@ import org.apache.kafka.common.config.ConfigDef;
 import java.util.List;
 import java.util.Map;
 
-public class CloudSolrInputDocumentHandlerConfig extends SolrInputDocumentHandlerConfig<CloudSolrSinkTopicConfig> {
+public class CloudSolrSinkConnectorConfig extends SolrSinkConnectorConfig<CloudSolrSinkTopicConfig> {
 
   public static final String ZOOKEEPER_HOSTS_CONFIG = "solr.zookeeper.hosts";
   private static final String ZOOKEEPER_HOSTS_DOC = "Zookeeper hosts that are used to store solr configuration.";
@@ -42,7 +42,7 @@ public class CloudSolrInputDocumentHandlerConfig extends SolrInputDocumentHandle
     return this.getString(ZOOKEEPER_CHROOT_CONFIG);
   }
 
-  protected CloudSolrInputDocumentHandlerConfig(ConfigDef subclassConfigDef, Map<String, String> props) {
+  protected CloudSolrSinkConnectorConfig(ConfigDef subclassConfigDef, Map<String, String> props) {
     super(subclassConfigDef, props);
   }
 
@@ -52,7 +52,7 @@ public class CloudSolrInputDocumentHandlerConfig extends SolrInputDocumentHandle
   }
 
 
-  public CloudSolrInputDocumentHandlerConfig(Map<String, String> props) {
+  public CloudSolrSinkConnectorConfig(Map<String, String> props) {
     this(configDef(), props);
   }
 

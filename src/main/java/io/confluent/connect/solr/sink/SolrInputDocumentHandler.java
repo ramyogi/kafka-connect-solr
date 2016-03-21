@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.confluent.connect.solr.sink.solr;
+package io.confluent.connect.solr.sink;
 
 import io.confluent.connect.solr.sink.config.SolrSinkTopicConfig;
 import org.apache.kafka.connect.sink.SinkRecord;
@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-public abstract class SolrInputDocumentHandler implements AutoCloseable {
+abstract class SolrInputDocumentHandler implements AutoCloseable {
   private static final Logger log = LoggerFactory.getLogger(SolrInputDocumentHandler.class);
 
   private final String topic;

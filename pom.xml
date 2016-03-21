@@ -26,7 +26,7 @@
   <artifactId>kafka-connect-solr</artifactId>
   <packaging>jar</packaging>
   <version>1.0.0-SNAPSHOT</version>
-  <name>kafka-connect-jdbc</name>
+  <name>kafka-connect-solr</name>
   <organization>
     <name>Confluent, Inc.</name>
     <url>http://confluent.io</url>

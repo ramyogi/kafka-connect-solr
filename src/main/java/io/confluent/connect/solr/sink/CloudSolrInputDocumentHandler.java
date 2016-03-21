@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.confluent.connect.solr.sink.solr;
+package io.confluent.connect.solr.sink;
 
 import io.confluent.connect.solr.sink.config.CloudSolrSinkTopicConfig;
 import org.apache.solr.client.solrj.SolrClient;

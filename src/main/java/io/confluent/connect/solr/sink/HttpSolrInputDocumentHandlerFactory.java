@@ -13,8 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.confluent.connect.solr.sink.solr;
+package io.confluent.connect.solr.sink;
 
-public class DefaultSolrInputDocumentConverter extends SolrInputDocumentConverter {
+import java.util.Map;
 
+class HttpSolrInputDocumentHandlerFactory extends SolrInputDocumentHandlerFactory {
+
+  @Override
+  public void initialize(Map<String, String> props) {
+
+  }
+
+  @Override
+  protected SolrInputDocumentHandler create(String topic) {
+    return null;
+  }
+
+  @Override
+  public void close() throws Exception {
+
+  }
 }

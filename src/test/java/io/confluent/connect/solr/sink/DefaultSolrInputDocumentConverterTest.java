@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.confluent.connect.solr.sink.solr;
+package io.confluent.connect.solr.sink;
 
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.confluent.connect.solr.sink.DefaultSolrInputDocumentConverter;
+import io.confluent.connect.solr.sink.SolrInputDocumentConverter;
 import io.confluent.connect.solr.sink.config.CloudSolrSinkTopicConfig;
 import io.confluent.connect.solr.sink.config.SolrSinkTopicConfig;
 import org.apache.kafka.connect.data.*;

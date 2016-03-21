@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.confluent.connect.solr.sink.solr;
+package io.confluent.connect.solr.sink;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class SolrInputDocumentHandlerFactory implements AutoCloseable {
+abstract class SolrInputDocumentHandlerFactory implements AutoCloseable {
   public abstract void initialize(Map<String, String> props);
   protected abstract SolrInputDocumentHandler create(String topic);
 
