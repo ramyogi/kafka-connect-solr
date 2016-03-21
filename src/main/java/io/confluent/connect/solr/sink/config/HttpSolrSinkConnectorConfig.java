@@ -19,8 +19,16 @@ import org.apache.kafka.common.config.ConfigDef;
 
 import java.util.Map;
 
-public class HttpSolrSinkConnectorConfig extends SolrSinkConnectorConfig {
+public class HttpSolrSinkConnectorConfig extends SolrSinkConnectorConfig<HttpSolrSinkTopicConfig> {
 
+  public static final String SOLR_URL_CONFIG = "solr.url";
+  private static final String SOLR_URL_DOC = "Url to connect to solr with.";
+
+  static ConfigDef configDef(){
+    return baseConfigDef()
+        .define(SOLR_URL_CONFIG, ConfigDef.Type.STRING, ConfigDef.Importance.HIGH, SOLR_URL_DOC)
+        ;
+  }
 
 
   protected HttpSolrSinkConnectorConfig(ConfigDef subclassConfigDef, Map<String, String> props) {
@@ -28,13 +36,15 @@ public class HttpSolrSinkConnectorConfig extends SolrSinkConnectorConfig {
   }
 
   @Override
-  protected SolrSinkTopicConfig createTopicConfig(Map props) {
-    return null;
+  protected HttpSolrSinkTopicConfig createTopicConfig(Map props) {
+    return new HttpSolrSinkTopicConfig(props);
   }
 
   public HttpSolrSinkConnectorConfig(Map<String, String> props) {
-    this(config,props);
+    this(configDef(),props);
   }
 
-
+  public String getSolrUrl() {
+    return this.getString(SOLR_URL_CONFIG);
+  }
 }

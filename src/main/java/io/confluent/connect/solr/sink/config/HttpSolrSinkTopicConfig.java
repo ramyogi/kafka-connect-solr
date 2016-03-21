@@ -21,17 +21,18 @@ import java.util.Map;
 
 public class HttpSolrSinkTopicConfig extends SolrSinkTopicConfig {
 
-  public static final String COLLECTION_NAME_CONFIG = "collection.name";
-  private static final String COLLECTION_NAME_DOC = "Name of the solr collection to write to.";
+  public static final String CORE_NAME_CONFIG = "core.name";
+  private static final String CORE_NAME_DOC = "Name of the solr collection to write to.";
+
 
   static ConfigDef configDef(){
     return baseConfigDef()
-        .define(COLLECTION_NAME_CONFIG, ConfigDef.Type.STRING, ConfigDef.Importance.HIGH, COLLECTION_NAME_DOC)
+        .define(CORE_NAME_CONFIG, ConfigDef.Type.STRING, ConfigDef.Importance.HIGH, CORE_NAME_DOC)
         ;
   }
 
-  public String getCollectionName(){
-    return this.getString(COLLECTION_NAME_CONFIG);
+  public String getCoreName(){
+    return this.getString(CORE_NAME_CONFIG);
   }
 
   protected HttpSolrSinkTopicConfig(ConfigDef subclassConfigDef, Map<String, String> props) {

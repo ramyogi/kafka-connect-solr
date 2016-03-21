@@ -25,8 +25,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class SolrSinkTopicConfig extends AbstractConfig {
-  static ConfigDef config = baseConfigDef();
-
   public static final String TOPIC_CONFIG = "topic";
   private static final String TOPIC_DOC = "Kafka topic";
 
@@ -55,7 +53,7 @@ public abstract class SolrSinkTopicConfig extends AbstractConfig {
     this.fieldConfigs = loadFieldConfigs();
   }
 
-  public SolrInputDocumentConverter getSolrInputDocumentFactory(){
+  public SolrInputDocumentConverter getSolrInputDocumentConverter(){
     SolrInputDocumentConverter solrInputDocumentConverter = this.getConfiguredInstance(SOLR_INPUT_DOCUMENT_CONVERTER_CLASS_CONFIG, SolrInputDocumentConverter.class);
     solrInputDocumentConverter.configure(this);
     return solrInputDocumentConverter;

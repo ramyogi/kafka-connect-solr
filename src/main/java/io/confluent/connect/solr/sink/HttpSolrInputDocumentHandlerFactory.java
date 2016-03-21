@@ -15,18 +15,47 @@
  */
 package io.confluent.connect.solr.sink;
 
+import io.confluent.connect.solr.sink.config.HttpSolrSinkConnectorConfig;
+import io.confluent.connect.solr.sink.config.HttpSolrSinkTopicConfig;
+import org.apache.kafka.connect.errors.ConnectException;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrClient;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 
 class HttpSolrInputDocumentHandlerFactory extends SolrInputDocumentHandlerFactory {
+  private static final Logger log = LoggerFactory.getLogger(HttpSolrInputDocumentHandlerFactory.class);
+  HttpSolrSinkConnectorConfig httpSolrSinkConnectorConfig;
 
   @Override
   public void initialize(Map<String, String> props) {
-
+    this.httpSolrSinkConnectorConfig = new HttpSolrSinkConnectorConfig(props);
   }
 
   @Override
   protected SolrInputDocumentHandler create(String topic) {
-    return null;
+    HttpSolrSinkTopicConfig topicConfig = this.httpSolrSinkConnectorConfig.getTopicConfig(topic);
+    SolrInputDocumentConverter solrInputDocumentConverter = topicConfig.getSolrInputDocumentConverter();
+    String coreName = topicConfig.getCoreName();
+    String coreUrl;
+    try {
+      URL baseUrl = new URL(this.httpSolrSinkConnectorConfig.getSolrUrl());
+      coreUrl = new URL(baseUrl,coreName).toString();
+    } catch (MalformedURLException e) {
+      throw new ConnectException("Invalid Solr Url", e);
+    }
+
+    if(log.isInfoEnabled()) {
+      log.info("Configuring topic '{}' to url '{}'", topicConfig.getCoreName(), coreUrl);
+    }
+
+    SolrClient solrClient = new HttpSolrClient(coreUrl);
+    return new HttpSolrInputDocumentHandler(topicConfig, solrClient, solrInputDocumentConverter);
   }
 
   @Override

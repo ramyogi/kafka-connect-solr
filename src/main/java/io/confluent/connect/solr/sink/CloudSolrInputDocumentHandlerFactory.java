@@ -40,7 +40,7 @@ class CloudSolrInputDocumentHandlerFactory extends SolrInputDocumentHandlerFacto
   @Override
   protected SolrInputDocumentHandler create(String topic) {
     CloudSolrSinkTopicConfig cloudSolrSinkTopicConfig = this.cloudSolrSinkConnectorConfig.getTopicConfig(topic);
-    SolrInputDocumentConverter solrInputDocumentConverter = cloudSolrSinkTopicConfig.getSolrInputDocumentFactory();
+    SolrInputDocumentConverter solrInputDocumentConverter = cloudSolrSinkTopicConfig.getSolrInputDocumentConverter();
 
     return new CloudSolrInputDocumentHandler(cloudSolrSinkTopicConfig, solrClient, solrInputDocumentConverter, cloudSolrSinkTopicConfig);
   }
