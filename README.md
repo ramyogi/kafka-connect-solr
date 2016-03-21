@@ -107,10 +107,12 @@ solr0.column.mappings.text.field=text
 
 # Running in development
 
+There is also a docker-compose script with configuration for zookeeper, solr cloud, and solr standalone. This can be used with `docker-compose up`
+
 ```
 mvn clean package
 export CLASSPATH="$(find `pwd`/target/kafka-connect-solr-1.0.0-SNAPSHOT-package/share/java/kafka-connect-solr -type f | tr '\n' ':')"
-$CONFLUENT_HOME/bin/connect-standalone $CONFLUENT_HOME/etc/schema-registry/connect-avro-standalone.properties httpsolr.properties
+$CONFLUENT_HOME/bin/connect-standalone $CONFLUENT_HOME/etc/schema-registry/connect-avro-standalone.properties config/httpsolr.properties
 ```
 
 
