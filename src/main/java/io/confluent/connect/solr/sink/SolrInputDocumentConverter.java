@@ -67,7 +67,7 @@ public abstract class SolrInputDocumentConverter {
     if(currencyFields.containsKey(field.name())){
       String currencyCode = currencyFields.get(field.name());
       String currency = String.format("%s,%s", value, currencyCode);
-      solrInputDocument.addField(solrField, value);
+      solrInputDocument.addField(solrField, currency);
     } else {
       switch(field.schema().type()){
         default:
