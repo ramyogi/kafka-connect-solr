@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
 
-    Copyright (C) 2016 Jeremy Custenborder (jcustenborder@gmail.com)
+    Copyright © 2016 Jeremy Custenborder (jcustenborder@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-            http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,202 +16,64 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <prerequisites>
         <maven>3.3.0</maven>
     </prerequisites>
 
-  <groupId>io.confluent</groupId>
-  <artifactId>kafka-connect-solr</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0.0-SNAPSHOT</version>
-  <name>kafka-connect-solr</name>
-  <organization>
-    <name>Confluent, Inc.</name>
-    <url>http://confluent.io</url>
-  </organization>
-  <url>http://confluent.io</url>
-  <description>
-    A Kafka Connect connector copying data from Kafka to Solr.
-  </description>
-  <inceptionYear>2016</inceptionYear>
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+    <parent>
+        <groupId>com.github.jcustenborder.kafka.connect</groupId>
+        <artifactId>kafka-connect-parent</artifactId>
+        <version>0.10.1.0-cp1</version>
+    </parent>
 
-  <scm>
-    <connection>scm:git:git://github.com/confluentinc/kafka-connect-jdbc.git</connection>
-    <developerConnection>scm:git:git@github.com:confluentinc/kafka-connect-jdbc.git</developerConnection>
-    <url>https://github.com/confluentinc/kafka-connect-jdbc</url>
-    <tag>HEAD</tag>
-  </scm>
+    <groupId>io.confluent</groupId>
+    <artifactId>kafka-connect-solr</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>kafka-connect-solr</name>
 
-  <properties>
-    <confluent.version>3.0.0</confluent.version>
-    <kafka.version>0.10.0.0-cp1</kafka.version>
-    <junit.version>4.12</junit.version>
-    <easymock.version>3.0</easymock.version>
-    <powermock.version>1.6.2</powermock.version>
-    <solr.version>6.2.0</solr.version>
-    <commons-io.version>2.4</commons-io.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
-  </properties>
+    <url>https://github.com/jcustenborder/kafka-connect-solr</url>
+    <description>
+        A Kafka Connect connector copying data from Kafka to Solr.
+    </description>
 
-  <repositories>
-    <repository>
-      <id>confluent</id>
-      <name>Confluent</name>
-      <url>${confluent.maven.repo}</url>
-    </repository>
-  </repositories>
+    <inceptionYear>2016</inceptionYear>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>connect-api</artifactId>
-      <version>${kafka.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.solr</groupId>
-      <artifactId>solr-solrj</artifactId>
-      <version>${solr.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.confluent</groupId>
-      <artifactId>kafka-connect-avro-converter</artifactId>
-      <version>${confluent.version}</version>
-    </dependency>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:https://github.com/jcustenborder/kafka-connect-solr.git</connection>
+        <developerConnection>scm:git:git://git@github.com:jcustenborder/kafka-connect-solr.git</developerConnection>
+        <url>https://github.com/jcustenborder/kafka-connect-solr</url>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/jcustenborder/kafka-connect-solr/issues</url>
+        <system>github</system>
+    </issueManagement>
 
-    <!-- JDBC drivers, only included in runtime so they get packaged -->
+    <properties>
+        <solr.version>6.3.0</solr.version>
+    </properties>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.easymock</groupId>
-      <artifactId>easymock</artifactId>
-      <version>${easymock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-module-junit4</artifactId>
-      <version>${powermock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-easymock</artifactId>
-      <version>${powermock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>${commons-io.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <inherited>true</inherited>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <descriptors>
-            <descriptor>src/assembly/package.xml</descriptor>
-          </descriptors>
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
-        <configuration>
-          <argLine>-Djava.awt.headless=true</argLine>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.mycila</groupId>
-        <artifactId>license-maven-plugin</artifactId>
-        <version>3.0</version>
-        <configuration>
-          <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
-          <properties>
-            <owner>Jeremy Custenborder</owner>
-            <email>jcustenborder@gmail.com</email>
-          </properties>
-          <excludes>
-            <exclude>**/README</exclude>
-            <exclude>src/test/resources/**</exclude>
-            <exclude>src/main/resources/**</exclude>
-            <exclude>src/assembly/**</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-  </build>
-
-  <profiles>
-    <profile>
-      <id>standalone</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-              <descriptors>
-                <descriptor>src/assembly/standalone.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>${solr.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent.kafka</groupId>
+            <artifactId>connect-utils</artifactId>
+            <version>[0.1.14,0.1.100)</version>
+        </dependency>
+    </dependencies>
 </project>
