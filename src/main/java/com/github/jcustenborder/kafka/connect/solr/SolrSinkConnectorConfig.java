@@ -18,7 +18,6 @@ package com.github.jcustenborder.kafka.connect.solr;
 import com.google.common.base.Strings;
 import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
-import org.apache.kafka.common.config.types.Password;
 
 import java.util.Map;
 
