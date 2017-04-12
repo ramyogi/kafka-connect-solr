@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,20 +24,17 @@ import java.util.Map;
 public class SolrSinkConnectorConfig extends AbstractConfig {
   public static final String SOLR_COMMIT_WITHIN_CONFIG = "solr.commit.within";
   public static final String COLUMN_IGNORE_UNKNOWN_FIELDS_CONFIG = "solr.ignore.unknown.fields";
+  public static final String SOLR_USERNAME_CONFIG = "solr.username";
+  public static final String SOLR_PASSWORD_CONFIG = "solr.password";
+  static final String SOLR_USERNAME_DOC = "The username to use for basic authentication.";
+  static final String SOLR_PASSWORD_DOC = "The password to use for basic authentication.";
   private static final String SOLR_COMMIT_WITHIN_DOC = "Configures Solr UpdaterRequest for a commit within the requested number of milliseconds .";
   private static final String COLUMN_IGNORE_UNKNOWN_FIELDS_DOC = "Flag to determine if the connector should raise an exception when it encountered a field it doesn't have configured.";
-
-  public static final String SOLR_USERNAME_CONFIG = "solr.username";
-  static final String SOLR_USERNAME_DOC = "The username to use for basic authentication.";
-  public static final String SOLR_PASSWORD_CONFIG = "solr.password";
-  static final String SOLR_PASSWORD_DOC = "The password to use for basic authentication.";
-
-
-  public int commitWithin;
-  public boolean ignoreUnknownFields;
   public final String username;
   public final String password;
   public final boolean useBasicAuthentication;
+  public int commitWithin;
+  public boolean ignoreUnknownFields;
 
 
   protected SolrSinkConnectorConfig(ConfigDef configDef, Map<String, String> props) {

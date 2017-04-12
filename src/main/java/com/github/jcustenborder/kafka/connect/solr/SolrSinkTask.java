@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -34,12 +34,11 @@ import java.util.Map;
 public abstract class SolrSinkTask<T extends SolrSinkConnectorConfig> extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(SolrSinkTask.class);
   protected T config;
+  protected SolrClient client;
 
   protected abstract T config(Map<String, String> settings);
 
   protected abstract SolrClient client();
-
-  protected SolrClient client;
 
   @Override
   public void start(Map<String, String> settings) {

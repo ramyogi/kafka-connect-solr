@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,8 +21,8 @@ import java.util.Map;
 
 public class HttpSolrSinkConnectorConfig extends SolrSinkConnectorConfig {
   public static final String CORE_NAME_CONFIG = "solr.core.name";
-  private static final String CORE_NAME_DOC = "Name of the solr core to write to.";
   public static final String SOLR_URL_CONFIG = "solr.url";
+  private static final String CORE_NAME_DOC = "Name of the solr core to write to.";
   private static final String SOLR_URL_DOC = "Url to connect to solr with.";
 
 
