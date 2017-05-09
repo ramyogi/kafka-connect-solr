@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ import org.apache.kafka.common.config.ConfigDef;
 
 import java.util.Map;
 
-public class SolrSinkConnectorConfig extends AbstractConfig {
+class SolrSinkConnectorConfig extends AbstractConfig {
   public static final String SOLR_COMMIT_WITHIN_CONFIG = "solr.commit.within";
   public static final String COLUMN_IGNORE_UNKNOWN_FIELDS_CONFIG = "solr.ignore.unknown.fields";
   public static final String SOLR_USERNAME_CONFIG = "solr.username";
@@ -33,8 +33,8 @@ public class SolrSinkConnectorConfig extends AbstractConfig {
   public final String username;
   public final String password;
   public final boolean useBasicAuthentication;
-  public int commitWithin;
-  public boolean ignoreUnknownFields;
+  public final int commitWithin;
+  public final boolean ignoreUnknownFields;
 
 
   protected SolrSinkConnectorConfig(ConfigDef configDef, Map<String, String> props) {
