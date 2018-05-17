@@ -1,21 +1,21 @@
-
 # Introduction
 
+The SOLR connector is a high speed mechanism for writing data to [Apache Solr](http://lucene.apache.org/solr/).
 
-The SOLR connector is a high speed mechanism for writing data to [Apache Solr ](http://lucene.apache.org/solr/).
+### Tip
 
-
+If you are seeing error messages such as `Invalid version (expected 2, but 60) or the data in not in 'javabin' format` compare the version of the Solr Server against the version of solrj the connector is compiled with. This error message is most likely due to a version mismatch between the server and solrj. To address this try replacing the solr-solrj-*.jar packaged with the connector with the version that matches the Solr server you are connecting to.
 
 # Sink Connectors
 
 
 ## Cloud Solr
 
-This connector is used to connect to [SolrCloud ](https://cwiki.apache.org/confluence/display/solr/SolrCloud) using the Zookeeper based configuration.
+This connector is used to connect to [SolrCloud](https://cwiki.apache.org/confluence/display/solr/SolrCloud) using the Zookeeper based configuration.
 
 ### Tip
 
-The target collection for this connector is selected by the topic name. [Transformations ](https://kafka.apache.org/documentation/#connect_transforms) like the RegexRouter transformation can be used to change the topic name before it is sent to Solr.
+The target collection for this connector is selected by the topic name. [Transformations](https://kafka.apache.org/documentation/#connect_transforms) like the RegexRouter transformation can be used to change the topic name before it is sent to Solr.
 
 
 ### Configuration
@@ -126,7 +126,7 @@ post the configuration to one the distributed connect worker(s).
     "solr.zookeeper.hosts" : "< Required Configuration >"
   }
 }
-[``
+```
 
 Use curl to post the configuration to one of the Kafka Connect Workers. Change `http://localhost:8083/` the the endpoint of
 one of your Kafka Connect worker(s).
@@ -149,7 +149,7 @@ This connector is used to connect to write directly to a Solr core.
 
 ### Tip
 
-The target collection for this connector is selected by the topic name. `Transformations ](https://kafka.apache.org/documentation/#connect_transforms) like the RegexRouter transformation can be used to change the topic name before it is sent to Solr.
+The target collection for this connector is selected by the topic name. [Transformations](https://kafka.apache.org/documentation/#connect_transforms) like the RegexRouter transformation can be used to change the topic name before it is sent to Solr.
 
 
 ### Configuration
@@ -157,7 +157,7 @@ The target collection for this connector is selected by the topic name. `Transfo
 #### Authentication
 
 
-##### [solr.password`
+##### `solr.password`
 
 The password to use for basic authentication.
 
@@ -195,7 +195,7 @@ Url to connect to solr with.
 
 ##### `solr.queue.size`
 
-The number of documents to batch together before sending to Solr. See `ConcurrentUpdateSolrClient.Builder.withQueueSize(int) ](https://lucene.apache.org/solr/6_3_0/solr-solrj/org/apache/solr/client/solrj/impl/ConcurrentUpdateSolrClient.Builder.html#withQueueSize-int-)
+The number of documents to batch together before sending to Solr. See [ConcurrentUpdateSolrClient.Builder.withQueueSize(int)](https://lucene.apache.org/solr/6_3_0/solr-solrj/org/apache/solr/client/solrj/impl/ConcurrentUpdateSolrClient.Builder.html#withQueueSize-int-)
 
 *Importance:* High
 
@@ -205,7 +205,7 @@ The number of documents to batch together before sending to Solr. See `Concurren
 
 
 
-##### [solr.delete.documents.enabled`
+##### `solr.delete.documents.enabled`
 
 Flag to determine if the connector should delete documents. General practice in Kafka is to treat a record that contains a key with a null value as a delete.
 
@@ -219,7 +219,7 @@ Flag to determine if the connector should delete documents. General practice in 
 
 ##### `solr.thread.count`
 
-The number of threads used to empty ConcurrentUpdateSolrClients queue. See `ConcurrentUpdateSolrClient.Builder.withThreadCount(int) ](https://lucene.apache.org/solr/6_3_0/solr-solrj/org/apache/solr/client/solrj/impl/ConcurrentUpdateSolrClient.Builder.html#withThreadCount-int-)
+The number of threads used to empty ConcurrentUpdateSolrClients queue. See [ConcurrentUpdateSolrClient.Builder.withThreadCount(int)](https://lucene.apache.org/solr/6_3_0/solr-solrj/org/apache/solr/client/solrj/impl/ConcurrentUpdateSolrClient.Builder.html#withThreadCount-int-)
 
 *Importance:* Medium
 
