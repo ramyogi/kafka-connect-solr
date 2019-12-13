@@ -16,7 +16,6 @@
 package com.github.jcustenborder.kafka.connect.solr;
 
 
-import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrClient;
 import org.apache.solr.client.solrj.request.UpdateRequest;
@@ -26,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class CloudSolrSinkTask extends SolrSinkTask<CloudSolrSinkConnectorConfig> {
   private static final Logger log = LoggerFactory.getLogger(CloudSolrSinkTask.class);
@@ -35,7 +35,7 @@ public class CloudSolrSinkTask extends SolrSinkTask<CloudSolrSinkConnectorConfig
     return new CloudSolrSinkConnectorConfig(settings);
   }
 
-  SolrClient client;
+  CloudSolrClient client;
 
   @Override
   public void start(Map<String, String> settings) {
@@ -44,6 +44,9 @@ public class CloudSolrSinkTask extends SolrSinkTask<CloudSolrSinkConnectorConfig
     builder.withZkHost(this.config.zookeeperHosts);
     builder.withZkChroot(this.config.zookeeperChroot);
     this.client = builder.build();
+    this.client.setZkConnectTimeout(this.config.zookeeperConnectTimeoutMs);
+    this.client.setZkClientTimeout(this.config.zookeeperClientTimeoutMs);
+    this.client.setRetryExpiryTime((int) TimeUnit.SECONDS.convert(this.config.zookeeperRetryExpiryTimeMs, TimeUnit.MILLISECONDS));
   }
 
   @Override
