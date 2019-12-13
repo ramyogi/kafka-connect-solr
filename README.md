@@ -1,6 +1,7 @@
-
 # Introduction
+[Documentation](https://jcustenborder.github.io/kafka-connect-documentation/projects/kafka-connect-solr)
 
+[Confluent Hub](https://www.confluent.io/hub/jcustenborder/kafka-connect-solr)
 
 The SOLR connector is a high speed mechanism for writing data to [Apache Solr](http://lucene.apache.org/solr/).
 
